@@ -206,10 +206,10 @@ export default function SectionMain () {
     const [currentQuestion, setCurrentQuestion] = useState( createRandomQuestion() )
 
     return(
-        <section>
+        <section className="container">
             <p>Верных ответов: {score}</p>
             <p className = {classes.question}>{currentQuestion.question}</p>
-            <div>
+            <div className = {classes.answer_wrapper}>
                {currentQuestion.answers.map((value) => {
                 return <button onClick = {() => handleClick(value)} key = {value.id} className = {classes.answer}>{value.value}</button>
                })}

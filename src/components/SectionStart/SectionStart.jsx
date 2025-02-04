@@ -9,7 +9,7 @@ import Button from '../Button/Button.jsx'
 export default function SectionStart({changeTab}) {
     
     return (
-        <section className={classes.container}>
+        <section className="container">
             <img src={logo} className={classes.logo} alt="quizmath" />
 
             <div className={classes.wrapper}>
