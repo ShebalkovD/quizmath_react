@@ -194,12 +194,26 @@ export default function SectionMain () {
     }
 
     // Обработать нажатие на кнопку ответа
-    function handleClick(value) {
+    function handleClick(value, event) {
         if (value.isCorrect) {
             setScore(score + 1)
+
+            // Поменять цвет на синий
+            event.target.style.backgroundColor = '#009DFF'
+            setTimeout(function() {
+                event.target.style.backgroundColor = '#222632' 
+            }, 100)
+        }else {
+            // Поменять цвет на красный
+            event.target.style.backgroundColor = '#FF004C'
+            setTimeout(function() {
+                event.target.style.backgroundColor = '#222632' 
+            }, 100)
         }
 
-        setCurrentQuestion(createRandomQuestion())
+        setTimeout(function() {
+            setCurrentQuestion(createRandomQuestion()) 
+        }, 100)
     }
     
     const [score, setScore] = useState(0)
@@ -211,7 +225,7 @@ export default function SectionMain () {
             <p className = {classes.question}>{currentQuestion.question}</p>
             <div className = {classes.answer_wrapper}>
                {currentQuestion.answers.map((value) => {
-                return <button onClick = {() => handleClick(value)} key = {value.id} className = {classes.answer}>{value.value}</button>
+                return <button onClick = {(e) => handleClick(value, e)} key = {value.id} className = {classes.answer}>{value.value}</button>
                })}
             </div>
         </section>

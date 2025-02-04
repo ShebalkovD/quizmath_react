@@ -32,6 +32,8 @@
     font-size: 3.2rem;
     text-align: center; 
     font-weight: 400;
+
+    /* transition: background-color 0.1s ease-in-out; */
 }
 
 .answer:hover {
