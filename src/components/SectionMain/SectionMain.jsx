@@ -18,15 +18,15 @@ export default function SectionMain () {
 
     // Проверить, чтобы ответ не совпадал с другим
     function checkAnswer(currentAnswer, answers) {
-        let asnwerValid = true // Ответ отличается от других
+        let answerValid = true // Ответ отличается от других
 
         answers.forEach(answer => {
             if (answer.value == currentAnswer) {
-                asnwerValid = false
+                answerValid = false
             }
         })
 
-        return asnwerValid
+        return answerValid
     }
 
     // Перемешать массив ответов
@@ -55,6 +55,8 @@ export default function SectionMain () {
                 return '*'
             case 3:
                 return '/'
+            default: 
+                return '+'
         }
     }
 
@@ -116,7 +118,7 @@ export default function SectionMain () {
                     else {
                         // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
                         do {
-                            answer.value = (x + getRandomInt(10)) - (y - getRandomInt(10)) // Значение неверного ответа отличается на незначительное случайное число
+                            answer.value = x  - (y + getRandomInt(10)) // Значение неверного ответа отличается на незначительное случайное число
                         } while (!checkAnswer(answer.value, answers))
                         answer.isCorrect = false
                     }
@@ -142,7 +144,7 @@ export default function SectionMain () {
                     else {
                         // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
                         do {
-                            answer.value = (x + getRandomInt(3)) * (y - getRandomInt(3)) // Значение неверного ответа отличается на незначительное случайное число
+                            answer.value = getRandomInt(10) * getRandomInt(10) // Значение неверного ответа отличается на незначительное случайное число
                         } while (!checkAnswer(answer.value, answers))
                         answer.isCorrect = false
                     }
@@ -152,15 +154,9 @@ export default function SectionMain () {
 
                 break;
             case '/':
-                x = getRandomInt(100)
-                y = getRandomInt(10) + 2
+                y = getRandomInt(10) + 1
+                x = getRandomInt(10) * y
                 
-
-                while(x % y != 0 ) {
-                    x = getRandomInt(100)
-                    y = getRandomInt(10) + 2
-                }
-
                 questionText = `${x} ${operator} ${y}`
                 // Создать 5 ответов
                 for (let i = 0; i < 5; i++) {
@@ -175,7 +171,7 @@ export default function SectionMain () {
                     else {
                         // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
                         do {
-                            answer.value = (getRandomInt(10)) // Значение неверного ответа отличается на незначительное случайное число
+                            answer.value = getRandomInt(10 + 1) // Значение неверного ответа отличается на незначительное случайное число
                         } while (!checkAnswer(answer.value, answers))
                         answer.isCorrect = false
                     }
