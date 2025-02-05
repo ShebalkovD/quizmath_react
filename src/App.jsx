@@ -4,7 +4,7 @@ import SectionMain from "./components/SectionMain/SectionMain"
 
 function App() {
 
-    const [tab, setTab] = useState('main')
+    const [tab, setTab] = useState('start')
 
     function changeTab(nextTab) {
         setTab(nextTab)

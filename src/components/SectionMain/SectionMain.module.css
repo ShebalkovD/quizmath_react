@@ -38,7 +38,14 @@
 
 .answer:hover {
     cursor: pointer;
-    background-color: #252936;
+}
+
+.correct {
+    background-color: #009DFF;
+}
+
+.wrong {
+    background-color: #FF004C;
 }
 
 .answer_wrapper {
@@ -48,6 +55,7 @@
     align-items: center;
     gap: 2.4rem;
     flex-wrap: wrap;
+    margin-bottom: 4.8rem;
 }
 
 .section {

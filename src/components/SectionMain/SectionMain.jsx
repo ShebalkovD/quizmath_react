@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import Button from '../Button/Button.jsx'
 import classes from './SectionMain.module.css'
 
-export default function SectionMain () {
+export default function SectionMain ({changeTab}) {
 
     // Класс вопроса
     class Question {
@@ -161,13 +162,13 @@ export default function SectionMain () {
             // Поменять цвет на синий
             event.target.style.backgroundColor = '#009DFF'
             setTimeout(function() {
-                event.target.style.backgroundColor = '#222632' 
+                event.target.style.backgroundColor = '' 
             }, 100)
         }else {
             // Поменять цвет на красный
             event.target.style.backgroundColor = '#FF004C'
             setTimeout(function() {
-                event.target.style.backgroundColor = '#222632' 
+                event.target.style.backgroundColor = '' 
             }, 100)
         }
 
@@ -175,12 +176,30 @@ export default function SectionMain () {
             setCurrentQuestion(createRandomQuestion()) 
         }, 100)
     }
+
+    function startTimer() {
+        let counter = time
+        const timer = setInterval(() => {
+            counter > 0 ? counter -= 1 : clearInterval(timer)
+            setTime(counter)
+        }, 1000)
+        return timer
+    }
     
     const [score, setScore] = useState(0)
     const [currentQuestion, setCurrentQuestion] = useState( createRandomQuestion() )
+    const [time, setTime] = useState(30)
+
+    useEffect(() => {
+        let timer = startTimer()
+        return() => {
+            clearInterval(timer)
+        }
+    }, [])
 
     return(
         <section className="container">
+            <p>{time}</p>
             <p>Верных ответов: {score}</p>
             <p className = {classes.question}>{currentQuestion.question}</p>
             <div className = {classes.answer_wrapper}>
@@ -188,6 +207,8 @@ export default function SectionMain () {
                 return <button onClick = {(e) => handleClick(value, e)} key = {value.id} className = {classes.answer}>{value.value}</button>
                })}
             </div>
+            
+            <Button onButtonClick = {changeTab} nextTab = 'start'>Назад</Button>
         </section>
     )
 }
