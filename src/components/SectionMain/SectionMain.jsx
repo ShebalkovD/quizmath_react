@@ -43,6 +43,7 @@ export default function SectionMain () {
         return arr;
     }
 
+    // Получить знак для вычислений
     function getOperation() {
         let num = getRandomInt(4)
 
@@ -60,7 +61,7 @@ export default function SectionMain () {
         }
     }
 
-    function generateAnswers(correctAnswer, shiftX, shiftY) {
+    function generateAnswers(correctAnswer) {
         let answers = []
 
         for (let i = 0; i < 5; i++) {
@@ -76,7 +77,8 @@ export default function SectionMain () {
                 let answerValid = true
                 // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
                 do {
-                    answer.value = correctAnswer + getRandomInt(shiftX) - getRandomInt(shiftY) // Значение неверного ответа отличается на незначительное случайное число
+                    let randNum = getRandomInt(10)
+                    randNum >= 5 ? answer.value = correctAnswer + getRandomInt(10) + 1 : answer.value = correctAnswer - getRandomInt(10) + 1
                     answerValid = checkAnswer(answer.value, answers) 
                 } while (!answerValid)
                 answer.isCorrect = false
@@ -102,8 +104,6 @@ export default function SectionMain () {
         let x = 0
         let y = 0
         let correctAnswer = 0
-        let shiftX = 0
-        let shiftY = 0
 
         questionText = `${x} ${operator} ${y}`
 
@@ -111,44 +111,37 @@ export default function SectionMain () {
             case '+':
                 x = getRandomInt(100)
                 y = getRandomInt(100)
-                shiftX = getRandomInt(10)
-                shiftY = getRandomInt(10)
                 correctAnswer = x + y
+
                 questionText = `${x} ${operator} ${y}`
-                
-                answers = generateAnswers(correctAnswer, shiftX, shiftY)
+                answers = generateAnswers(correctAnswer)
+
                 break;
             case '-':
                 x = getRandomInt(100)
                 y = getRandomInt(100)
-                shiftX = getRandomInt(10)
-                shiftY = getRandomInt(10)
                 correctAnswer = x - y
+
                 questionText = `${x} ${operator} ${y}`
-                
-                answers = generateAnswers(correctAnswer, shiftX, shiftY)
+                answers = generateAnswers(correctAnswer)
 
                 break;
             case '*':
                 x = getRandomInt(10)
                 y = getRandomInt(10)
-                shiftX = getRandomInt(10)
-                shiftY = getRandomInt(10)
                 correctAnswer = x * y
+
                 questionText = `${x} ${operator} ${y}`
-                
-                answers = generateAnswers(correctAnswer, shiftX, shiftY)
+                answers = generateAnswers(correctAnswer)
 
                 break;
             case '/':
                 y = getRandomInt(10) + 1
                 x = getRandomInt(10) * y
-                shiftX = getRandomInt(10)
-                shiftY = getRandomInt(10)
                 correctAnswer = x / y
+
                 questionText = `${x} ${operator} ${y}`
-                
-                answers = generateAnswers(correctAnswer, shiftX, shiftY)
+                answers = generateAnswers(correctAnswer)
 
                 break;
         }
