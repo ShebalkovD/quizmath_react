@@ -60,6 +60,34 @@ export default function SectionMain () {
         }
     }
 
+    function generateAnswers(correctAnswer, shiftX, shiftY) {
+        let answers = []
+
+        for (let i = 0; i < 5; i++) {
+            let answer = {} // Объект ответа
+            answer.id = i + 1 // id ответа
+
+            // Первый ответ - верный, остальные - неверные
+            if (i == 0) {
+                answer.value = correctAnswer // Значение ответа
+                answer.isCorrect = true // Правильность ответа
+            }
+            else {
+                let answerValid = true
+                // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
+                do {
+                    answer.value = correctAnswer + getRandomInt(shiftX) - getRandomInt(shiftY) // Значение неверного ответа отличается на незначительное случайное число
+                    answerValid = checkAnswer(answer.value, answers) 
+                } while (!answerValid)
+                answer.isCorrect = false
+            }
+
+            answers.push(answer) // Добавить ответ в список
+        }
+
+        return answers
+    }
+
     // Создать случайный вопрос
     function createRandomQuestion() {
 
@@ -73,111 +101,54 @@ export default function SectionMain () {
         // Значения для вычислений
         let x = 0
         let y = 0
+        let correctAnswer = 0
+        let shiftX = 0
+        let shiftY = 0
+
         questionText = `${x} ${operator} ${y}`
+
         switch (operator) {
             case '+':
                 x = getRandomInt(100)
                 y = getRandomInt(100)
+                shiftX = getRandomInt(10)
+                shiftY = getRandomInt(10)
+                correctAnswer = x + y
                 questionText = `${x} ${operator} ${y}`
-                // Создать 5 ответов
-                for (let i = 0; i < 5; i++) {
-                    let answer = {} // Объект ответа
-                    answer.id = i + 1 // id ответа
-
-                    // Первый ответ - верный, остальные - неверные
-                    if (i == 0) {
-                        answer.value = x + y // Значение ответа
-                        answer.isCorrect = true // Правильность ответа
-                    }
-                    else {
-                        // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
-                        do {
-                            answer.value = (x + getRandomInt(10)) + (y - getRandomInt(10)) // Значение неверного ответа отличается на незначительное случайное число
-                        } while (!checkAnswer(answer.value, answers))
-                        answer.isCorrect = false
-                    }
-
-                    answers.push(answer) // Добавить ответ в список
-                }
-
+                
+                answers = generateAnswers(correctAnswer, shiftX, shiftY)
                 break;
             case '-':
                 x = getRandomInt(100)
                 y = getRandomInt(100)
+                shiftX = getRandomInt(10)
+                shiftY = getRandomInt(10)
+                correctAnswer = x - y
                 questionText = `${x} ${operator} ${y}`
-                // Создать 5 ответов
-                for (let i = 0; i < 5; i++) {
-                    let answer = {} // Объект ответа
-                    answer.id = i + 1 // id ответа
-
-                    // Первый ответ - верный, остальные - неверные
-                    if (i == 0) {
-                        answer.value = x - y // Значение ответа
-                        answer.isCorrect = true // Правильность ответа
-                    }
-                    else {
-                        // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
-                        do {
-                            answer.value = x  - (y + getRandomInt(10)) // Значение неверного ответа отличается на незначительное случайное число
-                        } while (!checkAnswer(answer.value, answers))
-                        answer.isCorrect = false
-                    }
-
-                    answers.push(answer) // Добавить ответ в список
-                }
+                
+                answers = generateAnswers(correctAnswer, shiftX, shiftY)
 
                 break;
             case '*':
                 x = getRandomInt(10)
                 y = getRandomInt(10)
+                shiftX = getRandomInt(10)
+                shiftY = getRandomInt(10)
+                correctAnswer = x * y
                 questionText = `${x} ${operator} ${y}`
-                // Создать 5 ответов
-                for (let i = 0; i < 5; i++) {
-                    let answer = {} // Объект ответа
-                    answer.id = i + 1 // id ответа
-
-                    // Первый ответ - верный, остальные - неверные
-                    if (i == 0) {
-                        answer.value = x * y // Значение ответа
-                        answer.isCorrect = true // Правильность ответа
-                    }
-                    else {
-                        // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
-                        do {
-                            answer.value = getRandomInt(10) * getRandomInt(10) // Значение неверного ответа отличается на незначительное случайное число
-                        } while (!checkAnswer(answer.value, answers))
-                        answer.isCorrect = false
-                    }
-
-                    answers.push(answer) // Добавить ответ в список
-                }
+                
+                answers = generateAnswers(correctAnswer, shiftX, shiftY)
 
                 break;
             case '/':
                 y = getRandomInt(10) + 1
                 x = getRandomInt(10) * y
-                
+                shiftX = getRandomInt(10)
+                shiftY = getRandomInt(10)
+                correctAnswer = x / y
                 questionText = `${x} ${operator} ${y}`
-                // Создать 5 ответов
-                for (let i = 0; i < 5; i++) {
-                    let answer = {} // Объект ответа
-                    answer.id = i + 1 // id ответа
-
-                    // Первый ответ - верный, остальные - неверные
-                    if (i == 0) {
-                        answer.value = x / y // Значение ответа
-                        answer.isCorrect = true // Правильность ответа
-                    }
-                    else {
-                        // Проверить, чтобы ответ не совпадал с другими. В таком случае - заново сгенерировать ответ
-                        do {
-                            answer.value = getRandomInt(10 + 1) // Значение неверного ответа отличается на незначительное случайное число
-                        } while (!checkAnswer(answer.value, answers))
-                        answer.isCorrect = false
-                    }
-
-                    answers.push(answer) // Добавить ответ в список
-                }
+                
+                answers = generateAnswers(correctAnswer, shiftX, shiftY)
 
                 break;
         }
