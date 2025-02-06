@@ -5,7 +5,7 @@ import logo from '../../assets/logo.svg'
 import timeImg from '../../assets/time-dark.svg'
 import correctImg from '../../assets/correct-dark.svg'
 
-export default function SectionMain ({changeTab}) {
+export default function SectionMain ({changeTab, score, handleSetScore}) {
 
     // Класс вопроса
     class Question {
@@ -65,6 +65,7 @@ export default function SectionMain ({changeTab}) {
         }
     }
 
+    // Сгенерировать 5 случайных вопросов
     function generateAnswers(correctAnswer) {
         let answers = []
 
@@ -160,7 +161,7 @@ export default function SectionMain ({changeTab}) {
     // Обработать нажатие на кнопку ответа
     function handleClick(value, event) {
         if (value.isCorrect) {
-            setScore(score + 1)
+            handleSetScore(score)
 
             // Поменять цвет на синий
             event.target.style.backgroundColor = '#009DFF'
@@ -181,15 +182,22 @@ export default function SectionMain ({changeTab}) {
     }
 
     function startTimer() {
+        handleSetScore(-1)
         let counter = time
         const timer = setInterval(() => {
-            counter > 0 ? counter -= 1 : clearInterval(timer)
+            if (counter > 0) {
+                counter -= 1
+            }
+            else {
+                clearInterval(timer)
+                changeTab('result')
+            }
             setTime(counter)
         }, 1000)
         return timer
     }
     
-    const [score, setScore] = useState(0)
+
     const [currentQuestion, setCurrentQuestion] = useState( createRandomQuestion() )
     const [time, setTime] = useState(30)
 
@@ -220,8 +228,6 @@ export default function SectionMain ({changeTab}) {
                 return <button onClick = {(e) => handleClick(value, e)} key = {value.id} className = {classes.answer} onMouseEnter={(e) => {e.target.style.backgroundColor = '#252938'}} onMouseLeave={(e) => {e.target.style.backgroundColor = '#222632'}}>{value.value}</button>
                })}
             </div>
-            
-            <Button onButtonClick = {changeTab} nextTab = 'start'>Назад</Button>
         </section>
     )
 }
