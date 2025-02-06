@@ -15,10 +15,7 @@ body {
     color: #fff;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    padding: 0;
 
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
@@ -27,7 +24,8 @@ body {
 }
 
 .container {
-    width: clamp(30rem, 100vw, 80rem);
+    width: clamp(30rem, 100vw, 60rem);
+    height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;

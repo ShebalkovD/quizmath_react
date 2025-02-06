@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react"
 import Button from '../Button/Button.jsx'
 import classes from './SectionMain.module.css'
+import logo from '../../assets/logo.svg'
+import timeImg from '../../assets/time-dark.svg'
+import correctImg from '../../assets/correct-dark.svg'
 
 export default function SectionMain ({changeTab}) {
 
@@ -198,9 +201,19 @@ export default function SectionMain ({changeTab}) {
     }, [])
 
     return(
-        <section className="container">
-            <p>{time}</p>
-            <p>Верных ответов: {score}</p>
+        <section className="container" style={{justifyContent: 'start', padding: '2rem'}}>
+            <div className={classes.info_container}>
+                <img src={logo} alt="quizmath" className={classes.logo}/>
+                <p className={classes.info}>
+                    <img src={timeImg} className={classes.info_img}/>
+                    <span className={classes.info_text}>{time}</span> 
+                </p>
+                <p className={classes.info}>
+                    <img src={correctImg} className={classes.info_img}/>
+                    <span className={classes.info_text}>{score}</span>
+                </p>
+            </div>
+            
             <p className = {classes.question}>{currentQuestion.question}</p>
             <div className = {classes.answer_wrapper}>
                {currentQuestion.answers.map((value) => {
