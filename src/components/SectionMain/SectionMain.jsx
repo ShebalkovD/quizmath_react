@@ -217,7 +217,7 @@ export default function SectionMain ({changeTab}) {
             <p className = {classes.question}>{currentQuestion.question}</p>
             <div className = {classes.answer_wrapper}>
                {currentQuestion.answers.map((value) => {
-                return <button onClick = {(e) => handleClick(value, e)} key = {value.id} className = {classes.answer}>{value.value}</button>
+                return <button onClick = {(e) => handleClick(value, e)} key = {value.id} className = {classes.answer} onMouseEnter={(e) => {e.target.style.backgroundColor = '#252938'}} onMouseLeave={(e) => {e.target.style.backgroundColor = '#222632'}}>{value.value}</button>
                })}
             </div>
             
