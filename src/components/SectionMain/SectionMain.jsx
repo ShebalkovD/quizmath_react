@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import classes from './SectionMain.module.css'
 import logo from '../../assets/logo.svg'
 import timeImg from '../../assets/time-dark.svg'
