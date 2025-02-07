@@ -20,7 +20,7 @@
 .answer {
     width: 8rem;
     height: 8rem;
-    padding: 1.6rem;
+    padding: 1.2rem;
     border-radius: 2rem;
 
     background-color: #222632;
@@ -29,15 +29,17 @@
     border: none;
     outline: none;
 
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     text-align: center; 
     font-weight: 400;
 
-    /* transition: background-color 0.1s ease-in-out; */
+    
 }
 
 .answer:hover {
     cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
 }
 
 .correct {

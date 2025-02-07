@@ -5,7 +5,7 @@ import SectionResult from "./components/SectionResult/SectionResult"
 
 function App() {
 
-    const [tab, setTab] = useState('start')
+    const [tab, setTab] = useState('main')
     const [score, setScore] = useState(0)
 
     function handleSetScore(score) {

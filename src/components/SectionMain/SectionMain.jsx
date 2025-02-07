@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react"
-import Button from '../Button/Button.jsx'
+import React, { useEffect, useRef, useState } from "react"
 import classes from './SectionMain.module.css'
 import logo from '../../assets/logo.svg'
 import timeImg from '../../assets/time-dark.svg'
@@ -200,6 +199,8 @@ export default function SectionMain ({changeTab, score, handleSetScore}) {
 
     const [currentQuestion, setCurrentQuestion] = useState( createRandomQuestion() )
     const [time, setTime] = useState(30)
+
+
 
     useEffect(() => {
         let timer = startTimer()
