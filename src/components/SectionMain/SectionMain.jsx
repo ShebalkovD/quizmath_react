@@ -117,17 +117,11 @@ export default function SectionMain ({changeTab, score, handleSetScore}) {
                 y = getRandomInt(100)
                 correctAnswer = x + y
 
-                questionText = `${x} ${operator} ${y}`
-                answers = generateAnswers(correctAnswer)
-
                 break;
             case '-':
                 x = getRandomInt(100)
                 y = getRandomInt(100)
                 correctAnswer = x - y
-
-                questionText = `${x} ${operator} ${y}`
-                answers = generateAnswers(correctAnswer)
 
                 break;
             case '*':
@@ -135,20 +129,17 @@ export default function SectionMain ({changeTab, score, handleSetScore}) {
                 y = getRandomInt(10)
                 correctAnswer = x * y
 
-                questionText = `${x} ${operator} ${y}`
-                answers = generateAnswers(correctAnswer)
-
                 break;
             case '/':
                 y = getRandomInt(10) + 1
                 x = getRandomInt(10) * y
                 correctAnswer = x / y
 
-                questionText = `${x} ${operator} ${y}`
-                answers = generateAnswers(correctAnswer)
-
                 break;
         }
+
+        questionText = `${x} ${operator} ${y}`
+        answers = generateAnswers(correctAnswer)
 
         // Перемешать ответы
         mixAnswers(answers)
