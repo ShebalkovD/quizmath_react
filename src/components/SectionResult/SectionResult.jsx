@@ -10,7 +10,7 @@ export default function SectionResult({changeTab, score}) {
                 Верных ответов: 
                 <span className = {classes.score}>{score}</span>
             </p>
-            <Button onButtonClick = {changeTab} nextTab = 'main'>Заново</Button>
+            <Button onButtonClick = {changeTab} url = '/quiz'>Заново</Button>
         </section>
     )
 }

@@ -3,8 +3,9 @@ import classes from './SectionMain.module.css'
 import logo from '../../assets/logo.svg'
 import timeImg from '../../assets/time-dark.svg'
 import correctImg from '../../assets/correct-dark.svg'
+import { useNavigate } from "react-router"
 
-export default function SectionMain ({changeTab, score, handleSetScore}) {
+export default function SectionMain ({score, handleSetScore}) {
 
     // Класс вопроса
     class Question {
@@ -180,7 +181,7 @@ export default function SectionMain ({changeTab, score, handleSetScore}) {
             }
             else {
                 clearInterval(timer)
-                changeTab('result')
+                navigate('/result')
             }
             setTime(counter)
         }, 1000)
@@ -191,7 +192,7 @@ export default function SectionMain ({changeTab, score, handleSetScore}) {
     const [currentQuestion, setCurrentQuestion] = useState( createRandomQuestion() )
     const [time, setTime] = useState(30)
 
-
+    const navigate = useNavigate()
 
     useEffect(() => {
         let timer = startTimer()

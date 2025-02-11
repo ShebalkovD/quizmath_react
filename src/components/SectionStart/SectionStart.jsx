@@ -31,7 +31,7 @@ export default function SectionStart({changeTab}) {
                 </p>
             </div>
 
-            <Button onButtonClick = {changeTab} nextTab = 'main'>Начать</Button>
+            <Button onButtonClick = {changeTab} url = '/quiz'>Начать</Button>
         </section>
     )
 }
