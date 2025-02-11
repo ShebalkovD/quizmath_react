@@ -5,7 +5,7 @@ export default function SectionResult({changeTab, score}) {
 
 
     return(
-        <section className="container">
+        <section className="container page">
             <p className = {classes.result_text}>
                 Верных ответов: 
                 <span className = {classes.score}>{score}</span>

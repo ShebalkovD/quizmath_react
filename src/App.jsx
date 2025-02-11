@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import SectionStart from "./components/SectionStart/SectionStart"
 import SectionMain from "./components/SectionMain/SectionMain"
 import SectionResult from "./components/SectionResult/SectionResult"

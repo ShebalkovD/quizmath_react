@@ -202,7 +202,7 @@ export default function SectionMain ({score, handleSetScore}) {
     }, [])
 
     return(
-        <section className="container" style={{justifyContent: 'start', padding: '2rem'}}>
+        <section className="container page" style={{justifyContent: 'start', padding: '2rem'}}>
             <div className={classes.info_container}>
                 <img src={logo} alt="quizmath" className={classes.logo}/>
                 <p className={classes.info}>
